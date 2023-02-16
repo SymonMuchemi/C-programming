@@ -4,7 +4,8 @@ int main(void){
 
     int pin =0000, balance = 0;
 
-    void change_pin(){
+    void change_pin()
+    {
         int p1, p2;
         printf("Enter new pin");
         scanf("%d", &p1);
@@ -26,7 +27,7 @@ int main(void){
         
         if (amount <= 0)
         {
-            printf("Cannot complete transaction!\n")
+            printf("Cannot complete transaction!\n");
         }
         
         balance += amount;
@@ -37,18 +38,26 @@ int main(void){
         int amount;
         printf("Enter amount to withdraw: ");
         scanf("%d", &amount);
-        if (amount <= 0)
+        int chkpin;
+        printf("Enter pin: \n");
+        scanf("%d", &chkpin);
+
+        if (chkpin == pin)
         {
-            printf("Cannot complete transaction!\n")
+            if (amount <= 0)
+        {
+            printf("Cannot complete transaction!\n");
         }
         
-        if (amount > bal){
+        if (amount > balance){
             printf("Insufficient balance!\n");
         }
         else{
             balance -= amount;
             printf("Transaction successfull\nNew balance: Ksh %d\n", balance);
         }
+        }else printf("Invalid pin!\n");
+        
     }
 
     void check_balance(){
@@ -65,25 +74,37 @@ int main(void){
 
     void options(){
         int opt;
-        printf("Select from the menu below:\n1. Deposit\2.Withdraw\3. Check balance\n4. Change pin\nOption: ")
+        int chkpin;
+        printf("Enter pin: \n");
+        scanf("%d", &chkpin);
+
+        if (chkpin == pin)
+        {
+            printf("Select from the menu below:\n1. Deposit\n2.Withdraw\n3.Check balance\n4.Change pin\nOption: ");
         scanf("%d", &opt);
         switch (opt)
         {
-        case 1:
-            deposit();
-            break;
-        case 2:
-            withdraw();
-            break;
-        case 3:
-            check_balance();
-            break;
-        case 4:
-            change_pin();
-            break;
-        default:
-            printf("Invalid option!\n")
-            break;
+            case 1:
+                deposit();
+                break;
+            case 2:
+                withdraw();
+                break;
+            case 3:
+                check_balance();
+                break;
+            case 4:
+                change_pin();
+                break;
+            default:
+                printf("Invalid option!\n");
+                break;
+            }
         }
+        else printf("Invalid pin!\n"); 
+        
     }
+    
+    options();
+    
 }
