@@ -17,5 +17,5 @@ int main(void){
  
     
     int length = _strlen_recursion("Bananas turn yellow when ripe");
-    printf(length);
+    printf("%d",length);
 }
